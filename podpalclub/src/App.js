@@ -7,7 +7,6 @@ import {
   Route
 } from "react-router-dom";
 import Authorization from "./Authorization";
-import Mypodcasts from "./Mypodcasts"
 
 
 
@@ -22,9 +21,7 @@ function App() {
           <Route path="/auth" element={<Authorization/>} />
           <Route path="/callback" element={<Authorization/>} />
           <Route path="/match" element={<TinderCards/>} />
-          <Route path="/pod" element={<Mypodcasts/>} />
         </Routes>
-
       </Router>
       <h1> PodPal PodCast Club</h1>        
     </div>

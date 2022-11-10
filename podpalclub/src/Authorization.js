@@ -62,9 +62,21 @@ function Authorization() {
   
   const renderArtists = () => {
     return artists.map(artist => (
-        <div key={artist.id}>
+      <div className="tinderCards">
+      <TinderCard
+              className="swipe"
+                key={artist.name}  
+                preventSwipe={['up', 'down']}  
+                >
+                  
+        <div 
+        style={{ backgroundImage: `url(${artist.images[0].url})` }}
+                    className="card"
+        key={artist.id}>
             {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
             {artist.name}
+        </div>
+        </TinderCard>
         </div>
         
     ))
@@ -76,6 +88,18 @@ function Authorization() {
       name: "carlos",
       url: "https://img.i-scmp.com/cdn-cgi/image/fit=contain,width=1098,format=auto/sites/default/files/styles/1200x800/public/d8/images/canvas/2022/05/19/4eb393f3-d671-4d58-8680-89ccd6607acf_5e3be874.jpg?itok=CEBu_LXQ&v=1652966452",
     },
+    {
+      name: "Larry",
+      url: "https://img.i-scmp.com/cdn-cgi/image/fit=contain,width=1098,format=auto/sites/default/files/styles/1200x800/public/d8/images/canvas/2022/05/19/4eb393f3-d671-4d58-8680-89ccd6607acf_5e3be874.jpg?itok=CEBu_LXQ&v=1652966452",
+    },
+    {
+      name: "Barlos",
+      url: "https://i.kym-cdn.com/entries/icons/mobile/000/013/564/doge.jpg"
+    },
+    {
+      name: "Darlos",
+      url: "https://img.i-scmp.com/cdn-cgi/image/fit=contain,width=1098,format=auto/sites/default/files/styles/1200x800/public/d8/images/canvas/2022/05/19/4eb393f3-d671-4d58-8680-89ccd6607acf_5e3be874.jpg?itok=CEBu_LXQ&v=1652966452",
+    },
   ]);
   
   
@@ -83,8 +107,10 @@ function Authorization() {
       <div className="App">
           {!token ? 
           <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-                          to Spotify</a>
+                          to Spotify</a>  
+                                
           : <button onClick={logout}>Logout</button>}
+          
   
   
           {token ?
@@ -96,7 +122,6 @@ function Authorization() {
             : <h2>Please Login</h2>
             
             }
-            
             <div>
             <h1>Tinder Cards</h1>
 
@@ -120,6 +145,7 @@ function Authorization() {
             ))}
             </div>
         </div>
+            
             
             
       </div>
