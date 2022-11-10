@@ -7,7 +7,8 @@ import {
   Route
 } from "react-router-dom";
 import Authorization from "./Authorization";
-import Callback from "./Callback";
+import Mypodcasts from "./Mypodcasts"
+
 
 
 function App() {
@@ -17,10 +18,11 @@ function App() {
       <Router>
       <Header />
         <Routes>
-        <Route path="/login" element={<Authorization/>} />
+        <Route path="/" element={<Authorization/>} />
           <Route path="/auth" element={<Authorization/>} />
-          <Route path="/callback" element={<Callback/>} />
-          <Route path="/matches" element={<TinderCards/>} />
+          <Route path="/callback" element={<Authorization/>} />
+          <Route path="/match" element={<TinderCards/>} />
+          <Route path="/pod" element={<Mypodcasts/>} />
         </Routes>
 
       </Router>

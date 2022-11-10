@@ -14,7 +14,7 @@ function Header() {
         <img
             className="header__logo" 
             src="https://1000logos.net/wp-content/uploads/2018/07/Tinder-logo.png"
-             alt="tinder logo"
+             alt="podpal logo"
              />
          <IconButton>  
         <ForumIcon className="header__icon" fontSize="large" />

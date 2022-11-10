@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import './App.css';
+import TinderCard from "react-tinder-card";
+import './TinderCards.css';
 import axios from 'axios'
 
 
@@ -13,6 +15,7 @@ function Authorization() {
       const [token, setToken] = useState("")
       const [searchKey, setSearchKey] = useState("")
       const [artists, setArtists]= useState("")
+      
   
   
       useEffect(() => {
@@ -26,7 +29,7 @@ function Authorization() {
   
           window.location.hash = ""
           window.localStorage.setItem("token", token)
-          setToken(token)
+  
         }
   
         setToken(token)
@@ -53,6 +56,7 @@ function Authorization() {
       console.log(data);
   
       setArtists(data.artists.items)
+      
   
   }  
   
@@ -62,8 +66,17 @@ function Authorization() {
             {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
             {artist.name}
         </div>
+        
     ))
+     
   }
+
+  const [people] = useState([
+    {
+      name: "carlos",
+      url: "https://img.i-scmp.com/cdn-cgi/image/fit=contain,width=1098,format=auto/sites/default/files/styles/1200x800/public/d8/images/canvas/2022/05/19/4eb393f3-d671-4d58-8680-89ccd6607acf_5e3be874.jpg?itok=CEBu_LXQ&v=1652966452",
+    },
+  ]);
   
   
     return (
@@ -73,7 +86,6 @@ function Authorization() {
                           to Spotify</a>
           : <button onClick={logout}>Logout</button>}
   
-    
   
           {token ?
             <form onSubmit={searchArtist}>
@@ -84,9 +96,36 @@ function Authorization() {
             : <h2>Please Login</h2>
             
             }
-    
+            
+            <div>
+            <h1>Tinder Cards</h1>
+
+        <div className="tinderCards__cardContainer">
+
+            {people.map(person => (
+                <TinderCard
+                className="swipe"
+                key={person.name}  
+                preventSwipe={['up', 'down']}  
+
+                >
+                    <div 
+                    style={{ backgroundImage: `url(${person.url})` }}
+                    className="card"
+                    >
+                        <h3>{person.name}</h3>
+
+                    </div>
+                </TinderCard>
+            ))}
+            </div>
+        </div>
+            
+            
       </div>
     );
+    
   }
+
 
   export default Authorization;
