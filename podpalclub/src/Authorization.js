@@ -61,25 +61,12 @@ function Authorization() {
   }  
   
   const renderArtists = () => {
-    return artists.map(artist => (
-      <div className="tinderCards">
-      <TinderCard
-              className="swipe"
-                key={artist.name}  
-                preventSwipe={['up', 'down']}  
-                >
-                  
-        <div 
-        style={{ backgroundImage: `url(${artist.images[0].url})` }}
-                    className="card"
-        key={artist.id}>
-            {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-            {artist.name}
-        </div>
-        </TinderCard>
-        </div>
-        
-    ))
+     return artists.map(artist => (
+      <div key={artist.id}>
+          {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+          {artist.name}
+      </div>
+  ))
      
   }
 
@@ -121,12 +108,14 @@ function Authorization() {
   
             : <h2>Please Login</h2>
             
+           
             }
-            <div>
+            {renderArtists()}
+          <div>
             <h1>Tinder Cards</h1>
 
         <div className="tinderCards__cardContainer">
-
+            
             {people.map(person => (
                 <TinderCard
                 className="swipe"
